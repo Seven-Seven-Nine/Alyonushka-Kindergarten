@@ -1,5 +1,5 @@
 <?php
-require_once '../application/database/connect_data_base.php';
+require_once '../app/database/connect_data_base.php';
 
 class News {
     public function get_news(): void {
@@ -68,8 +68,8 @@ class News {
                 $title = $_POST['title'];
                 $data = date('Y-m-d');
                 $file_name = basename($_FILES['file']['name']);
-                $upload_file_path = $_SERVER['DOCUMENT_ROOT'] . '/application/images/news/' . $file_name;
-                $src_image = '/application/images/news/' . $file_name;
+                $upload_file_path = $_SERVER['DOCUMENT_ROOT'] . '/app/images/news/' . $file_name;
+                $src_image = '/app/images/news/' . $file_name;
                 $introductory_text = $_POST['introductory-text'];
                 $text = $_POST['text'];
 
@@ -154,8 +154,8 @@ class News {
 
             if (isset($_FILES['file']) && $_FILES['file']['error'] == UPLOAD_ERR_OK) {
                 $file_name = basename($_FILES['file']['name']);
-                $upload_file_path = $_SERVER['DOCUMENT_ROOT'] . '/application/images/news/' . $file_name;
-                $image_src = '/application/images/news/' . $file_name;
+                $upload_file_path = $_SERVER['DOCUMENT_ROOT'] . '/app/images/news/' . $file_name;
+                $image_src = '/app/images/news/' . $file_name;
 
                 if (move_uploaded_file($_FILES['file']['tmp_name'], $upload_file_path)) {
                     $stmt = $connection->prepare('UPDATE `news` SET `title` = ?, `data` = ?, `image_src` = ?, `introductory_text` = ?, `text` = ? WHERE `id` = ?');

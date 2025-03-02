@@ -1,6 +1,6 @@
 <?php
 
-require_once '../application/database/connect_data_base.php';
+require_once '../app/database/connect_data_base.php';
 
 class Account {
     public function exit_account(): void {

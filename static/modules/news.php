@@ -1,5 +1,5 @@
 <?php
-    require_once '../application/News.php';
+    require_once '../app/News.php';
 
     function check_error(): void {
         if (isset($_GET['error'])) {

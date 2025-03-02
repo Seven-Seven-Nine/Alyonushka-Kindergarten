@@ -1,5 +1,5 @@
 <div class="form flex-column-center">
-    <form class="flex-column-center" action="" method="POST">
+    <form class="flex-column-center" action="/static/index.php?page=applications&mode=create_application" method="POST">
         <input type="text" name="child-name" placeholder="Имя ребёнка" required>
         <input type="text" name="child-surname" placeholder="Фамилия ребёнка" required>
         <input type="text" name="child-patronymic" placeholder="Отчество ребёнка">

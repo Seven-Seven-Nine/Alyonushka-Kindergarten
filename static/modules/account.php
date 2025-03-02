@@ -1,5 +1,5 @@
 <?php
-require_once '../application/Account.php';
+require_once '../app/Account.php';
 
 $account = new Account();
 

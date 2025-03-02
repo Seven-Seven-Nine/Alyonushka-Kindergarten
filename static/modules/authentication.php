@@ -1,5 +1,5 @@
 <?php
-require_once '../application/Authentication.php';
+require_once '../app/Authentication.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (isset($_GET['validate'])) {

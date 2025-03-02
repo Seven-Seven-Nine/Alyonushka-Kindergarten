@@ -1,5 +1,5 @@
 <?php
-    require_once '../application/News.php';
+    require_once '../app/News.php';
 
     if ($_SESSION['role'] != 'administrator') {
         header('Location: /static/index.php?page=main');        

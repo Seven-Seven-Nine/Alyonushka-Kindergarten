@@ -1,6 +1,23 @@
 <?php
+    // require_once '../';
+
     if (!isset($_SESSION['login'])) {
         header('Location: /static/index.php?page=main');        
+    }
+
+    // $application = 
+
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        if (isset($_GET['mode'])) {
+            switch ($_GET['mode']) {
+                case 'create_application':
+                    # code...
+                    break;
+                default:
+                    echo '<p class="error-text">Неизвестный режим выполнения.</p>';
+                    break;
+            }
+        }
     }
 ?>
 
