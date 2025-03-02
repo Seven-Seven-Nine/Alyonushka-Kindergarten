@@ -1,0 +1,73 @@
+.main-page {
+    text-align: center;
+
+    & .logo {
+        width: 300px;
+        transition: filter 300ms normal ease;
+
+        &:hover {
+            filter: drop-shadow(0 0 10px white);
+        }
+    }
+
+    & .div-advantages {
+        width: 100%;
+
+        & h2 {
+            margin: 40px 0;
+        }
+
+        & .div-advantages-carts {
+            width: 100%;
+            justify-content: center;
+
+            & .main-cart {
+                text-align: center;
+                user-select: none;
+                color: white;
+                width: 300px;
+                min-height: 350px;
+                font-size: 16pt;
+                background-color: var(--bg-carts);
+                margin: 25px 20px;
+                padding: 10px;
+                border: 1px solid var(--color-border);
+                border-radius: 5px;
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: cover;
+                transition: border 0.4s normal ease, transform 0.4s normal, box-shadow 200ms normal ease;
+
+                &:hover {
+                    transform: scale(1.1);
+                    border: 1px solid white;
+                    box-shadow: 0 0 20px var(--accent-color);
+                }
+
+                & h3 {
+                    color: white;
+                }
+            }
+
+            & .cart-bg-anime-1 {
+                background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../images/anime_1.webp");
+            }
+
+            & .cart-bg-anime-2 {
+                background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../images/anime_2.webp");
+            }
+
+            & .cart-bg-anime-3 {
+                background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../images/anime_3.webp");
+            }
+
+            & .cart-bg-anime-4 {
+                background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../images/anime_4.webp");
+            }
+
+            & .cart-bg-anime-5 {
+                background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../images/anime_5.webp");
+            }
+        }
+    }
+}

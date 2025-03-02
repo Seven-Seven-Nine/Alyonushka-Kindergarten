@@ -1,0 +1,91 @@
+.news-page {
+
+    & .news-cart {
+        width: 400px;
+        height: 450px;
+        min-height: 450px;
+        margin: 20px 25px;
+        border: 1px solid var(--color-border);
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        transition: transform 0.3s normal ease, border 0.4s normal ease, backdrop-filter 0.5s normal ease, background-color 0.3s normal ease;
+        padding: 10px 30px;
+        backdrop-filter: blur(5px);
+        cursor: pointer;
+
+        &:hover {
+            transform: scale(1.1);
+            border: 1px solid var(--accent-color);
+            background-color: rgba(0, 0, 0, 0.300);
+        }
+
+        &:active {
+            transition: transform 0.1s normal ease;
+            transform: scale(0.98);
+        }
+
+        & h3 {
+            margin: 10px 0 0 0;
+            text-align: center;
+        }
+
+        & .data {
+            margin: 0;
+            font-size: 12pt;
+        }
+
+        & img {
+            margin: 10px 0;
+            width: 80%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            border: 1px solid var(--color-border);
+            transition: border 0.5s normal ease;
+
+            &:hover {
+                border: 1px solid var(--accent-color);
+            }
+        }
+    }
+
+    & .more-news {
+
+        & h2 {
+            margin: 10px 0 0 0;
+        }
+
+        & .data {
+            margin: 0;
+            font-size: 12pt;
+        }
+
+        & img {
+            margin: 10px 0;
+            width: 50%;
+            height: 700px;
+            object-fit: cover;
+            border-radius: 10px;
+            border: 1px solid white;
+            transition: border 0.5s normal ease, transform 0.3s normal ease;
+
+            &:hover {
+                border: 1px solid var(--accent-color);
+            }
+
+            &:active {
+                transform: scale(1.2);
+            }
+        }
+
+        & .text-news {
+            background-color: rgba(0, 0, 0, 0.253);
+            border-radius: 10px;
+            padding: 20px;
+            backdrop-filter: blur(5px);
+        }
+    }
+}

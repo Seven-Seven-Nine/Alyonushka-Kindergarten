@@ -1,0 +1,17 @@
+@keyframes header-start {
+    0% {
+        height: 100%;
+    }
+    100% {
+        height: 200px;
+    }
+}
+
+@keyframes magic {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
