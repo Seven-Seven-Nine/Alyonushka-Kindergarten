@@ -38,6 +38,9 @@
                 case 'news_edited':
                     echo '<p class="result-blue-text">Новость измена.</p>';
                     break;
+                case 'news_deleted':
+                    echo '<p class="result-red-text">Новость удалена.</p>';
+                    break;
                 default:
                     echo '<p class="error-text">Неизвестная новость.</p>';
                     break;
@@ -47,8 +50,22 @@
     <div class="flex-row-center flex-wrap">
         <?php
             if (isset($_GET['id_news_for_edit'])) {
-                $data_news = $news->get_data_news_for_form_edit($_GET['id_news_for_edit']);
-                require_once './modules/form_for_edit_news.php';
+                if (isset($_GET['action_edit_news'])) {
+                    switch ($_GET['action_edit_news']) {
+                        case 'edit':
+                            $data_news = $news->get_data_news_for_form_edit($_GET['id_news_for_edit']);
+                            require_once './modules/form_for_edit_news.php';
+                            break;
+                        case 'delete':
+                            $news->delete_news($_GET['id_news_for_edit']);
+                            break;
+                        default:
+                            echo '<p class="error-text">Неизвестное действие для редактирования новости.</p>';
+                            break;
+                    }
+                } else {
+                    require_once './modules/selection_for_editing_news.php';
+                }
             } else {
                 $news->get_news_for_edit();
             }

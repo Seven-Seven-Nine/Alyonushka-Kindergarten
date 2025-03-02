@@ -117,6 +117,30 @@ class News {
         $connection->close();
     }
 
+    public function get_more_news_for_edit(int $id_news): void {
+        $connection = connect_data_base();
+
+        if ($connection->connect_errno) {
+            die('<p class="error-text">Ошибка подключения к базе данных!</p>');
+        } else {
+            $stmt = $connection->prepare('SELECT `id`, `title`, `data`, `image_src`, `text` FROM `news` WHERE `id`=?');
+            $stmt->bind_param('i', $id_news);
+            $stmt->execute();
+            $result = $stmt->get_result();
+
+            while ($row = $result->fetch_assoc()) {
+                echo '
+                    <div class="more-news flex-column-center">
+                        <h2>'. $row['title'] .'</h2>
+                        <p class="data">'. $row['data'] .'</p>
+                        <img src="'. $row['image_src'] .'" alt="image_news">
+                        <p class="text-news">'.nl2br($row['text']) .'</p>
+                    </div>
+                ';
+            }
+        }
+    }
+
     public function get_data_news_for_form_edit(string $id_news): array {
         $connection = connect_data_base();
 
@@ -177,8 +201,25 @@ class News {
                 $stmt->close();
                 $connection->close();
 
-                header('Location: /static/index.php?page=admin_news&mode=edit_news&id_news_for_edit=7&result_edit_news=news_edited');
+                header('Location: /static/index.php?page=admin_news&mode=edit_news&id_news_for_edit='. $id_news .'&result_edit_news=news_edited');
             }
+        }
+    }
+
+    public function delete_news(string $id_news): void {
+        $connection = connect_data_base();
+
+        if ($connection->connect_errno) {
+            die('<p class="error-text">Ошибка подключения к базе данных!</p>');
+        } else {
+            $stmt = $connection->prepare('DELETE FROM `news` WHERE `id` = ?');
+            $stmt->bind_param('s', $id_news,);
+            $stmt->execute();
+
+            $stmt->close();
+            $connection->close();
+
+            header('Location: /static/index.php?page=admin_news&mode=edit_news&result_edit_news=news_deleted');
         }
     }
 }
