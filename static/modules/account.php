@@ -47,6 +47,7 @@ if (isset($_SESSION['login']) && isset($_SESSION['role']) && isset($_SESSION['em
                 ';
             } else {
                 echo '<div class="panel flex-column-center">';
+                echo '<h3>Ваши заявления:</h3>';
                 $account->get_list_applications_user();
                 echo '</div>';
             }

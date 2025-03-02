@@ -15,9 +15,9 @@
         <input type="text" name="address" placeholder="Адрес проживания" required>
         <select name="desired_group">
             <option value="">Выберите группу</option>
-            <option value="junior-group">Младшая группа</option>
-            <option value="middle-group">Средняя группа</option>
-            <option value="senior-group">Старшая группа</option>
+            <option value="младшая группа">Младшая группа</option>
+            <option value="средняя группа">Средняя группа</option>
+            <option value="старшая группа">Старшая группа</option>
         </select>
         <button type="submit">Подать заявление</button>
     </form>

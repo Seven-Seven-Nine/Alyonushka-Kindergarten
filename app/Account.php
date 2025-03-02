@@ -18,18 +18,15 @@ class Account {
         } else {
             $login = $_SESSION['login'];
 
-            $stmt = $connect->prepare('SELECT `id` `child_name`, `child_surname`, `child_patronymic`, `application_date`, `status` FROM `applications` WHERE `login` = ?');
+            $stmt = $connect->prepare('SELECT `id`, `child_name`, `child_surname`, `child_patronymic`, `application_date`, `status` FROM `applications` WHERE `login` = ?');
             $stmt->bind_param('s', $login);
             $stmt->execute();
             $result = $stmt->get_result();
 
-            $stmt->close();
-            $connect->close();
-
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
                     echo '
-                        <a class="application-button" title="Рассмотреть заявление №'. $row['id'] .'" class="flex-row-center" href="/static/index.php?page=admin_news">Новости</a>
+                        <a class="application-button" title="Рассмотреть заявление №'. $row['id'] .'" href="/static/index.php?page=applications&consider_the_application='. $row['id'] .'">'. $row['child_name'] .' '. $row['child_surname'] .' '. $row['child_patronymic'] .' | Дата: '. $row['application_date'] .' | Статус: '. $row['status'] .'</a>
                     ';
                 }
             } else {
@@ -37,6 +34,10 @@ class Account {
                     <p>У вас нет заявлений.</p>
                 ';
             }
+
+            
+            $stmt->close();
+            $connect->close();
         }
     }
 }

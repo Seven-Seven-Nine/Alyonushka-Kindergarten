@@ -21,7 +21,7 @@
     }
 ?>
 
-<main class="flex-start-column-center">
+<main class="application flex-start-column-center">
     <div class="block-arrow-back" flex-row-center">
         <a class="arrow-back" href="/static/index.php?page=account">←</a>
     </div>
@@ -42,17 +42,28 @@
                 case 'the_application_has_already_been_created':
                     echo '<p class="error-text">Заявление уже создано.</p>';
                     break;
+                case 'the_application_does_not_exist':
+                    echo '<p class="error-text">Заявление не существует.</p>';
+                    break;
                 default:
                     echo '<p class="error-text">Неизвестный результат заявления.</p>';
                     break;
             }
         }
 
-        if ($_SESSION['login'] == 'administrator') {
-            echo '<p>Заявления для админа.</p>';
+        if (isset(($_GET['consider_the_application']))) {
+            echo '<h2>Заявление №'. $_GET['consider_the_application'] .'</h2>';
+            $application->consider_the_application($_GET['consider_the_application']);
         } else {
-            echo '<h2>Заявление для поступления</h2>';
-            require_once './modules/form_for_create_application.php';
+            switch ($_SESSION['role']) {
+                case 'login':
+                    echo '<p>Заявления для админа.</p>';
+                    break;
+                default:
+                    echo '<h2>Заявление для поступления</h2>';
+                    require_once './modules/form_for_create_application.php';
+                    break;
+            }   
         }
     ?>
 </main>

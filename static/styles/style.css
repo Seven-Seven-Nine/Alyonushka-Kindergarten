@@ -8,6 +8,7 @@
 @import url("./authentication.css");
 @import url("./account.css");
 @import url("./admin_news.css");
+@import url("./application.css");
 
 /* Общие стили для тегов */
 
@@ -87,7 +88,7 @@ main {
     width: 100%;
     padding: 50px 20px;
     min-height: 83vh;
-    animation: magic 400ms normal ease;
+    animation: magic 500ms normal ease;
 }
 
 /* Остальное в footer.css */

@@ -60,4 +60,81 @@ class Application {
             }
         }
     }
+
+    public function consider_the_application(string $id_application): void {
+        $connect = connect_data_base();
+
+        if ($connect->connect_error) {
+            die('<p class="error-text">Ошибка подключения к базе данных!</p>');
+        } else {
+            if ($this->checking_the_existence_application($id_application)) {
+                $stmt = $connect->prepare('SELECT `id`, `child_name`, `child_surname`, `child_patronymic`, `child_birthdate`, `parent_name`, `parent_surname`, `parent_patronymic`, `parent_phone`, `parent_email`, `address`, `desired_group`, `application_date`, `status` FROM `applications` WHERE `id` = ?');
+                $stmt->bind_param('s', $id_application);
+                $stmt->execute();
+                $result = $stmt->get_result();
+
+                while ($row = $result->fetch_assoc()) {
+                    $class_application = '';
+                    
+                    switch ($row['status']) {
+                        case 'не рассмотрено':
+                            $class_application = '';
+                            break;
+                        case 'принято':
+                            $class_application = 'accepted';
+                            break;
+                        case 'отклонено':
+                            $class_application = 'rejected';
+                            break;
+                        default:
+                            $class_application = '';
+                            break;
+                    }
+
+                    echo '
+                        <div class="panel '. $class_application .'">
+                            <h3>Заявление №'. $row['id'] .' | '. $row['application_date'] .' | '. $row['status'] .'</h3>
+                            <hr>
+                            <p>Имя ребёнка: '. $row['child_name'] .'</p>
+                            <p>Фамилия ребёнка: '. $row['child_surname'] .'</p>
+                            <p>Отчество ребёнка: '. ($row['child_patronymic'] == '' ? '-' : $row['child_patronymic']) .'</p>
+                            <p>Дата рождения ребёнка: '. $row['child_birthdate'] .'</p>
+                            <hr>
+                            <p>Имя родителя: '. $row['parent_name'] .'</p>
+                            <p>Фамилия родителя: '. $row['parent_surname'] .'</p>
+                            <p>Отчество родителя: '. ($row['parent_patronymic'] == '' ? '-' : $row['parent_patronymic']) .'</p>
+                            <p>Номер телефона родителя: '. $row['parent_phone'] .'</p>
+                            <p>Почта родителя: '. $row['parent_email'] .'</p>
+                            <p>Адрес: '. $row['address'] .'</p>
+                            <p>Группа: '. $row['desired_group'] .'</p>
+                        </div>
+                    ';
+                }
+            } else {
+                header('Location: /static/index.php?page=applications&&error_application=the_application_does_not_exist');
+            }
+        }
+    }
+
+    private function checking_the_existence_application(string $id_application): bool {
+        $connect = connect_data_base();
+
+        if ($connect->connect_error) {
+            die('<p class="error-text">Ошибка подключения к базе данных!</p>');
+        } else {
+            $stmt = $connect->prepare('SELECT `id` FROM `applications` WHERE `id` = ?');
+            $stmt->bind_param('s', $id_application);
+            $stmt->execute();
+            $result = $stmt->get_result();
+
+            $stmt->close();
+            $connect->close();
+
+            if ($result->num_rows > 0) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+    }
 }
