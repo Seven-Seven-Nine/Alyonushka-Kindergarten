@@ -64,7 +64,7 @@ html, body {
     margin: 0;
     font-family: "Juila Mono", monospace;
     overflow: auto;
-    font-size: 12pt;
+    font-size: 14pt;
     background-color: var(--bg-body);
     background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("../images/bg.webp");
     background-position: center;
@@ -75,7 +75,7 @@ html, body {
 
 input, button, textarea {
     font-family: "Juila Mono", monospace;
-    font-size: 12pt;
+    font-size: 14pt;
 }
 
 /* Остальные теги в headers.css */

@@ -73,5 +73,20 @@
                 transform: scale(0.9);
             }
         }
+
+        & .button-delete {
+            transition: background-color 400ms normal ease, color 200ms normal ease, transform 50ms normal ease, box-shadow 300ms normal ease, border 300ms normal ease;
+
+            &:hover {
+                background-color: rgba(255, 0, 0, 0.8) !important;
+                border: 1px solid red !important;
+                color: rgb(255, 255, 255) !important;
+                box-shadow: 0 0 10px rgba(255, 0, 0, 0.8) !important;
+            }
+        }
+
+        & hr {
+            width: 90%;
+        }
     }
 }
